@@ -47,6 +47,28 @@ jobs:
         env:
           PLATFORM: ${{ matrix.platform }}
         run: pnpm --dir apps/mobile exec expo export --platform "$PLATFORM" --output-dir "dist/$PLATFORM"
+      - name: Set up Java
+        if: matrix.platform == 'android'
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Generate Android project
+        if: matrix.platform == 'android'
+        env:
+          CI: '1'
+        run: pnpm --dir apps/mobile exec expo prebuild --platform android
+      - name: Build Android APK
+        if: matrix.platform == 'android'
+        working-directory: apps/mobile/android
+        run: ./gradlew assembleRelease --no-daemon
+      - name: Upload Android APK
+        if: matrix.platform == 'android'
+        uses: actions/upload-artifact@v4
+        with:
+          name: openmuse-android-apk
+          path: apps/mobile/android/app/build/outputs/apk/release/app-release.apk
+          if-no-files-found: error
   browser:
     runs-on: ubuntu-latest
     timeout-minutes: 15
