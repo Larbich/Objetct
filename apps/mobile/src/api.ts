@@ -3,7 +3,7 @@ import { readApiPayload } from "./api-response";
 
 export const API_URL = (
   process.env.EXPO_PUBLIC_API_URL ||
-  (Platform.OS === "android" ? "http://10.0.2.2:8787" : "http://localhost:8787")
+  (Platform.OS === "android" ? "http://127.0.0.1:8787" : "http://localhost:8787")
 ).replace(/\/$/, "");
 
 export class MuseApi {

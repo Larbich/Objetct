@@ -82,7 +82,7 @@ For the iPhone development build:
 EXPO_PUBLIC_API_URL=http://127.0.0.1:8788 pnpm --dir apps/mobile exec expo start --dev-client --port 8081
 ```
 
-Use the [native setup](../apps/mobile/README.md) if the development build is not installed. Fully reload the app after changing its API URL. Android emulators use `http://10.0.2.2:8788` for the host API.
+Use the [native setup](../apps/mobile/README.md) if the development build is not installed. Fully reload the app after changing its API URL. When the app and demo server run on the same Android device, use `http://127.0.0.1:8788`.
 
 For the mobile story, send **“Check out Hacker News for cool stuff”**, then **“Summarize copilotkit.ai”**. For the desktop story, send **“Check my emails for the school trip”**, open the email card, then send **“Research Monterey Bay Aquarium and suggest three exhibits”**. Wait for each reply and choose **Take control** to inspect the browser. The recording model scripts these four requests; use [a configured model](../README.md#configure-the-agent-and-google) for open-ended requests. Mail and browser tools are the same server implementations in both modes.
 
